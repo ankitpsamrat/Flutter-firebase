@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "383345718540",
+    "project_id": "flutterfire-df98a",
+    "storage_bucket": "flutterfire-df98a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383345718540:android:52426eed5e04d7754f8529",
+        "android_client_info": {
+          "package_name": "com.example.flutter_fire"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcdQy4hp5y4Dadn_-NLBuaq7zseMOGbHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
