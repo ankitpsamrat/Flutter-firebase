@@ -4,6 +4,8 @@ import 'package:flutter_fire/firebase_options.dart';
 import 'package:flutter_fire/screens/sign_in_screen.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
