@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fire/firebase_options.dart';
+import 'package:flutter_fire/config/firebase_options.dart';
 import 'package:flutter_fire/screens/sign_in_screen.dart';
 
 Future<void> main() async {
