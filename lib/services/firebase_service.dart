@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +44,63 @@ class FirebaseService {
           .then((value) => debugPrint('User log out successfully'));
     } catch (e) {
       debugPrint('Unable to log out : $e');
+    }
+  }
+
+  static Future<void> addBioInToFirestoreDB({
+    required String bio,
+  }) async {
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      await firestore
+          .collection('userBio')
+          .doc(DateTime.now().millisecondsSinceEpoch.toString())
+          .set({
+        'bio': bio,
+      }).then((value) => debugPrint('Bio added successfully'));
+    } catch (e) {
+      debugPrint('Unable to add bio : $e');
+    }
+  }
+
+  static Future<void> fetchBioFromFirestoreDB() async {
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      DocumentReference userRef = firestore
+          .collection('userBio')
+          .doc('DateTime.now().millisecondsSinceEpoch.toString()');
+
+      DocumentSnapshot userSnapshot = await userRef.get();
+
+      // Check if the document exists
+      if (userSnapshot.exists) {
+        String userBio = userSnapshot.get('bio');
+
+        print('User Bio: $userBio');
+      } else {
+        print('User document does not exist');
+      }
+    } catch (e) {
+      print('Unable to fetch bio : $e');
+    }
+  }
+
+  static Future<void> updateBioInToFirestoreDB({
+    required String newBio,
+  }) async {
+    try {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      await firestore
+          .collection('userBio')
+          .doc('DateTime.now().millisecondsSinceEpoch.toString()')
+          .update({
+        'bio': newBio,
+      }).then((value) => debugPrint('Bio added successfully'));
+    } catch (e) {
+      debugPrint('Unable to update bio : $e');
     }
   }
 }
