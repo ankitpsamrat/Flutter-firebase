@@ -16,7 +16,7 @@ class Button extends StatelessWidget {
       child: Material(
         elevation: 0,
         borderRadius: BorderRadius.circular(10),
-        color: Colors.redAccent,
+        color: Colors.lightBlue,
         child: MaterialButton(
           padding: const EdgeInsets.all(15),
           minWidth: double.infinity,

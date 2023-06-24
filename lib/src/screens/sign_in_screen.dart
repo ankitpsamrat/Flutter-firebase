@@ -19,12 +19,6 @@ class _SignInScreenState extends State<SignInScreen> {
   final passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  // void authMethod() {
-  //   FirebaseAuth auth = FirebaseAuth.instance;
-
-  //   auth;
-  // }
-
   @override
   void dispose() {
     emailController.dispose();

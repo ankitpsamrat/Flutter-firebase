@@ -18,21 +18,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  // Future<void> signUpMethod() async {
-  //   try {
-  //     FirebaseAuth auth = FirebaseAuth.instance;
-
-  //     await auth
-  //         .createUserWithEmailAndPassword(
-  //           email: emailController.text.toString(),
-  //           password: passController.text.toString(),
-  //         )
-  //         .then((value) => debugPrint('Account created successfully'));
-  //   } catch (e) {
-  //     debugPrint('Unable to create account : $e');
-  //   }
-  // }
-
   @override
   void dispose() {
     emailController.dispose();

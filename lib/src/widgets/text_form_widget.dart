@@ -16,9 +16,11 @@ class TextInputField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextFormField(
-        autofocus: false,
         controller: controller,
         validator: validator,
+        autofocus: false,
+        maxLines: null,
+        keyboardType: TextInputType.multiline,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: hintText,
