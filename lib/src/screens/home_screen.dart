@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               hintText: 'Enter your bio...',
             ),
-            Button(
+            CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   FirebaseService.addBioInToFirestoreDB(

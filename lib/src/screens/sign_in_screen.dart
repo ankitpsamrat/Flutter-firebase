@@ -60,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
               },
               hintText: 'Password',
             ),
-            Button(
+            CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   FirebaseService.signInMethod(
