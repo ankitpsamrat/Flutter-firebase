@@ -10,9 +10,9 @@ class FirebaseService {
     required String password,
   }) async {
     try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
+      final FirebaseAuth authentication = FirebaseAuth.instance;
 
-      await auth
+      await authentication
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => debugPrint('Account created successfully'));
     } catch (e) {
@@ -25,9 +25,9 @@ class FirebaseService {
     required String password,
   }) async {
     try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
+      final FirebaseAuth authentication = FirebaseAuth.instance;
 
-      await auth
+      await authentication
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) => debugPrint('User login successfully'));
     } catch (e) {
@@ -37,9 +37,9 @@ class FirebaseService {
 
   static Future<void> logOutMethod() async {
     try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
+      final FirebaseAuth authentication = FirebaseAuth.instance;
 
-      await auth
+      await authentication
           .signOut()
           .then((value) => debugPrint('User log out successfully'));
     } catch (e) {
