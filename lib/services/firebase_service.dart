@@ -70,7 +70,7 @@ class FirebaseService {
 
       DocumentReference userRef = firestore
           .collection('userBio')
-          .doc('DateTime.now().millisecondsSinceEpoch.toString()');
+          .doc(DateTime.now().millisecondsSinceEpoch.toString());
 
       DocumentSnapshot userSnapshot = await userRef.get();
 
