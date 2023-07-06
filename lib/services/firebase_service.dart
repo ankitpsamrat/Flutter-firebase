@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class FirebaseService {
   //
 
+  static String myBio = '';
+
   static Future<void> signUpMethod({
     required String email,
     required String password,
@@ -53,10 +55,10 @@ class FirebaseService {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      await firestore
-          .collection('userBio')
-          .doc(DateTime.now().millisecondsSinceEpoch.toString())
-          .set({
+      String userId = DateTime.now().millisecondsSinceEpoch.toString();
+
+      await firestore.collection('userBio').doc(userId).set({
+        'id': userId,
         'bio': bio,
       }).then((value) => debugPrint('Bio added successfully'));
     } catch (e) {
