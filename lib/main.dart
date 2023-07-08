@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       home: (user == null)
           ? SignInScreen()
           : HomeScreen(
-              userId: '',
+              // userId: '',
             ),
     );
   }
