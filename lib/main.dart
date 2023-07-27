@@ -36,11 +36,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Firebase',
-      home: (user == null)
-          ? SignInScreen()
-          : HomeScreen(
-              // userId: '',
-            ),
+      home: (user == null) ? SignInScreen() : HomeScreen(),
     );
   }
 }

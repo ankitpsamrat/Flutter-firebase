@@ -7,42 +7,57 @@ class HomeScreen extends StatelessWidget {
 
   // const HomeScreen({required this.userId});
 
+  final data = FirebaseFirestore.instance
+      .collection('userBio')
+      // .where('userId', isEqualTo: userId)
+      .snapshots();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bio Page'),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('userBio')
-            // .where('userId', isEqualTo: userId)
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (snapshot.hasError) {
-            return Center(
-              child: Text('Error: ${snapshot.error}'),
-            );
-          }
-          if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
-            return Center(
-                // child: Text('No bio found for user: $userId'),
-                );
-          }
+      body: Text('data'),
 
-          final bioData =
-              snapshot.data!.docs.first.data() as Map<String, dynamic>;
+      // StreamBuilder<QuerySnapshot>(
+      //   stream: data,
+      //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return Center(
+      //         child: CircularProgressIndicator(),
+      //       );
+      //     }
+      //     if (snapshot.hasError) {
+      //       return Center(
+      //         child: Text('Error: ${snapshot.error}'),
+      //       );
+      //     }
+      //     if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
+      //       return Center(
+      //         child: Text('No bio found for user'),
+      //       );
+      //     }
 
-          return Center(
-            child: Text('Bio: ${bioData['bio']}'),
-          );
-        },
-      ),
+      //     // final bioData =
+      //     //     snapshot.data!.docs.first.data() as Map<String, dynamic>;
+
+      //     return Expanded(
+      //       child: ListView.builder(
+      //           // shrinkWrap: true,
+      //           itemCount: snapshot.data!.docs.length,
+      //           itemBuilder: (context, index) {
+      //             return ListTile(
+      //               title: Text(snapshot.data!.docs[index].id),
+      //             );
+      //             // Center(
+      //             //   child: Text('Bio: ${bioData['bio']}'),
+      //             // );
+      //           }),
+      //     );
+      //   },
+      // ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
