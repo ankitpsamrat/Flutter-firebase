@@ -27,7 +27,9 @@ class _AddBioScreenState extends State<AddBioScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Add bio'),
+        centerTitle: true,
+        backgroundColor: Colors.teal,
+        title: Text('Add Bio'),
       ),
       body: Form(
         key: formKey,
@@ -49,11 +51,13 @@ class _AddBioScreenState extends State<AddBioScreen> {
                 if (formKey.currentState!.validate()) {
                   FirebaseService.addBioInToFirestoreDB(
                     bio: textController.text.toString(),
-                  );
+                  ).then((value) {
+                    textController.clear();
+                    Navigator.pop(context);
+                  });
                 }
-                textController.clear();
               },
-              btnName: 'Submit',
+              btnName: 'Add Bio',
             ),
           ],
         ),

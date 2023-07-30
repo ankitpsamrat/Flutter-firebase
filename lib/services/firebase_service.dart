@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class FirebaseService {
   //
 
-  static String myBio = '';
-
   static Future<void> signUpMethod({
     required String email,
     required String password,
