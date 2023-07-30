@@ -32,6 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text('SignIn Screen'),
       ),
       body: Form(

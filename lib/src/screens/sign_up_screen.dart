@@ -31,6 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Text('SignUp Screen'),
       ),
       body: Form(
