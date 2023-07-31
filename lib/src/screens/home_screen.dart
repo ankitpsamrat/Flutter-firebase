@@ -36,20 +36,19 @@ class HomeScreen extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
+          } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           }
-          if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
-            return Text('No bio found for user');
-          }
+
+          List<QueryDocumentSnapshot> document = snapshot.data!.docs;
 
           return ListView.builder(
             shrinkWrap: true,
-            itemCount: snapshot.data!.docs.length,
+            itemCount: document.length,
             itemBuilder: (context, index) {
+              QueryDocumentSnapshot data = document[index];
               return ListTile(
-                title: Text(snapshot.data!.docs[index]['bio']),
+                title: Text(data['bio']),
               );
             },
           );
