@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_fire/services/firebase_service.dart';
 import 'package:flutter_fire/src/screens/add_bio_screen.dart';
 import 'package:flutter_fire/src/screens/sign_in_screen.dart';
+import 'package:flutter_fire/src/screens/upload_image.dart';
 
 class HomeScreen extends StatelessWidget {
   final data = FirebaseFirestore.instance.collection('userBio').snapshots();
@@ -49,21 +50,41 @@ class HomeScreen extends StatelessWidget {
               QueryDocumentSnapshot data = document[index];
               return ListTile(
                 title: Text(data['bio']),
+                subtitle: Text(data['id']),
               );
             },
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddBioScreen(),
-            ),
-          );
-        },
-        child: Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: "fab1",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UploadImage(),
+                ),
+              );
+            },
+            child: Icon(Icons.add_a_photo),
+          ),
+          SizedBox(height: 20),
+          FloatingActionButton(
+            heroTag: "fab2",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddBioScreen(),
+                ),
+              );
+            },
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
