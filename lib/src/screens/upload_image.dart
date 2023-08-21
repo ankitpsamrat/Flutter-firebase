@@ -1,8 +1,7 @@
-import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_fire/src/widgets/button_widget.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_fire/utils/image_utils.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({super.key});
@@ -13,25 +12,27 @@ class UploadImage extends StatefulWidget {
 
 class _UploadImageState extends State<UploadImage> {
   //
-  File? image;
+  Uint8List? image;
 
-  Future pickImgFromGallery() async {
-    try {
-      final pickedImage = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-        imageQuality: 85,
-      );
+  // File? image;
 
-      if (pickedImage == null) return;
-      final imagePath = File(pickedImage.path);
+  // Future pickImgFromGallery() async {
+  //   try {
+  //     final pickedImage = await ImagePicker().pickImage(
+  //       source: ImageSource.gallery,
+  //       imageQuality: 85,
+  //     );
 
-      setState(() {
-        image = imagePath;
-      });
-    } catch (e) {
-      debugPrint('Unable to pick image: $e');
-    }
-  }
+  //     if (pickedImage == null) return;
+  //     final imagePath = File(pickedImage.path);
+
+  //     setState(() {
+  //       image = imagePath;
+  //     });
+  //   } catch (e) {
+  //     debugPrint('Unable to pick image: $e');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +48,12 @@ class _UploadImageState extends State<UploadImage> {
         children: [
           Center(
             child: InkWell(
-              onTap: () {
-                pickImgFromGallery();
+              onTap: () async {
+                //
+                Uint8List file = await ImageUtils.pickImageFromGallery();
+                setState(() {
+                  image = file;
+                });
               },
               child: Container(
                 height: 300,
@@ -60,7 +65,7 @@ class _UploadImageState extends State<UploadImage> {
                   ),
                 ),
                 child: (image != null)
-                    ? Image.file(
+                    ? Image.memory(
                         image!,
                         fit: BoxFit.cover,
                       )
@@ -68,8 +73,16 @@ class _UploadImageState extends State<UploadImage> {
               ),
             ),
           ),
+          SizedBox(height: 40),
           CustomButton(
-            onPressed: () {},
+            onPressed: () {
+              String fileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
+
+              ImageUtils.addImageIntoDB(
+                storagePath: 'images/$fileName',
+                imageFile: image!,
+              ).then((value) => Navigator.pop(context));
+            },
             btnName: 'Upload image',
           ),
         ],
