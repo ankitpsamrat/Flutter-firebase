@@ -16,6 +16,8 @@ class _AddBioScreenState extends State<AddBioScreen> {
   final textController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
+  bool get isBioFieldFill => textController.text.isNotEmpty;
+
   @override
   void dispose() {
     textController.dispose();
@@ -44,20 +46,26 @@ class _AddBioScreenState extends State<AddBioScreen> {
                   return null;
                 }
               },
+              onChanged: (value) {
+                setState(() {});
+              },
               hintText: 'Enter your bio...',
             ),
             CustomButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  FirebaseService.addBioInToFirestoreDB(
-                    bio: textController.text.toString(),
-                  ).then((value) {
-                    textController.clear();
-                    Navigator.pop(context);
-                  });
-                }
-              },
               btnName: 'Add Bio',
+              btnBgColor: isBioFieldFill ? Colors.lightBlue : Colors.grey,
+              onPressed: isBioFieldFill
+                  ? () {
+                      if (formKey.currentState!.validate()) {
+                        FirebaseService.addBioInToFirestoreDB(
+                          bio: textController.text.toString(),
+                        ).then((value) {
+                          textController.clear();
+                          Navigator.pop(context);
+                        });
+                      }
+                    }
+                  : null,
             ),
           ],
         ),

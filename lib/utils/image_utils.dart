@@ -6,6 +6,25 @@ import 'package:image_picker/image_picker.dart';
 
 class ImageUtils {
   //
+  // File? image;
+
+  // Future pickImgFromGallery() async {
+  //   try {
+  //     final pickedImage = await ImagePicker().pickImage(
+  //       source: ImageSource.gallery,
+  //       imageQuality: 85,
+  //     );
+
+  //     if (pickedImage == null) return;
+  //     final imagePath = File(pickedImage.path);
+
+  //     setState(() {
+  //       image = imagePath;
+  //     });
+  //   } catch (e) {
+  //     debugPrint('Unable to pick image: $e');
+  //   }
+  // }
 
   static Future pickImageFromGallery() async {
     try {

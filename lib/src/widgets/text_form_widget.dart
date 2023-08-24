@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class TextInputField extends StatelessWidget {
   final TextEditingController controller;
-  final FormFieldValidator validator;
   final String hintText;
+  final FormFieldValidator? validator;
+  final ValueChanged<String>? onChanged;
 
   const TextInputField({
     required this.controller,
-    required this.validator,
     required this.hintText,
+    this.validator,
+    this.onChanged,
   });
 
   @override
@@ -21,6 +23,7 @@ class TextInputField extends StatelessWidget {
         autofocus: false,
         maxLines: null,
         keyboardType: TextInputType.multiline,
+        onChanged: onChanged,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: hintText,
