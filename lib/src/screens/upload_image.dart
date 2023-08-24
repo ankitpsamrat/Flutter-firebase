@@ -14,26 +14,6 @@ class _UploadImageState extends State<UploadImage> {
   //
   Uint8List? image;
 
-  // File? image;
-
-  // Future pickImgFromGallery() async {
-  //   try {
-  //     final pickedImage = await ImagePicker().pickImage(
-  //       source: ImageSource.gallery,
-  //       imageQuality: 85,
-  //     );
-
-  //     if (pickedImage == null) return;
-  //     final imagePath = File(pickedImage.path);
-
-  //     setState(() {
-  //       image = imagePath;
-  //     });
-  //   } catch (e) {
-  //     debugPrint('Unable to pick image: $e');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +29,6 @@ class _UploadImageState extends State<UploadImage> {
           Center(
             child: InkWell(
               onTap: () async {
-                //
                 Uint8List file = await ImageUtils.pickImageFromGallery();
                 setState(() {
                   image = file;
@@ -75,15 +54,19 @@ class _UploadImageState extends State<UploadImage> {
           ),
           SizedBox(height: 40),
           CustomButton(
-            onPressed: () {
-              String fileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
-
-              ImageUtils.addImageIntoDB(
-                storagePath: 'images/$fileName',
-                imageFile: image!,
-              ).then((value) => Navigator.pop(context));
-            },
             btnName: 'Upload image',
+            btnBgColor: (image != null) ? Colors.lightBlue : Colors.grey,
+            onPressed: (image != null)
+                ? () {
+                    String fileName =
+                        '${DateTime.now().millisecondsSinceEpoch}.jpg';
+
+                    ImageUtils.addImageIntoDB(
+                      storagePath: 'images/$fileName',
+                      imageFile: image!,
+                    ).then((value) => Navigator.pop(context));
+                  }
+                : null,
           ),
         ],
       ),

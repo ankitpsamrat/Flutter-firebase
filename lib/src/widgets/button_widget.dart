@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  final VoidCallback onPressed;
   final String btnName;
+  final VoidCallback? onPressed;
+  final Color btnBgColor;
 
   const CustomButton({
-    required this.onPressed,
     required this.btnName,
+    required this.onPressed,
+    this.btnBgColor = Colors.lightBlue,
   });
 
   @override
@@ -16,7 +18,7 @@ class CustomButton extends StatelessWidget {
       child: Material(
         elevation: 0,
         borderRadius: BorderRadius.circular(10),
-        color: Colors.lightBlue,
+        color: btnBgColor,
         child: MaterialButton(
           padding: const EdgeInsets.all(15),
           minWidth: double.infinity,
